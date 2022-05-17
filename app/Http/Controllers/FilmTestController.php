@@ -15,7 +15,7 @@ class FilmTestController extends Controller
 
     public function show($id) 
     {
-        $film = Film::find($id);
-        return $film;
+        $films = Film::find($id);
+        return $films;
     }
 }
