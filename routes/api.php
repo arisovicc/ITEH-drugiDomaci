@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilmTestController;
+use App\Http\Controllers\WatchlistTestController;
+use App\Http\Controllers\UserTestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +26,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/films/{id}', [FilmTestController::class, 'show']);
 Route::get('/films', [FilmTestController::class, 'index']);
 
+Route::get('/watchlists/{id}', [WatchlistTestController::class, 'show']);
+Route::get('/watchlists', [WatchlistTestController::class, 'index']);
 
+Route::get('/users/{id}', [UserTestController::class, 'show']);
+Route::get('/users', [UserTestController::class, 'index']);
 
