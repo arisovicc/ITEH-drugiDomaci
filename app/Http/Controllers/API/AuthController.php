@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+
 
 class AuthController extends Controller
 {
@@ -20,7 +19,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:8'
         ]);
 
-        if($validator->fails()) { //ukoliko uspesno prodje validaciju, kreiraj korisnika i ubaci ga u bazu
+        if($validator->fails()) //ukoliko uspesno prodje validaciju, kreiraj korisnika i ubaci ga u bazu
             return response()->json($validator->errors());
 
             $user = User::create([ //kreiramo usera, on cuva automatski sa odredjenim imenom, mejlom i sifrom, cuva u bazi i promenljivoj
@@ -28,7 +27,6 @@ class AuthController extends Controller
                 'email'=> $request->email,
                 'password' => $request -> passowrd,
             ]);
-        }
 
         //moramo da pravimo tokene, tj kada se user registruje da ima token u sebi da se registrovao, da on kasnije moze da se uloguje preko tog tokena
         $token = $user->createToken('auth_token')->plainTextToken;
