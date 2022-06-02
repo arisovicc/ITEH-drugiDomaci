@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilmTestController;
 use App\Http\Controllers\WatchlistTestController;
 use App\Http\Controllers\UserTestController;
-
+use App\Http\Controllers\API\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,3 +32,4 @@ Route::get('/watchlists', [WatchlistTestController::class, 'index']);
 Route::get('/users/{id}', [UserTestController::class, 'show']);
 Route::get('/users', [UserTestController::class, 'index']);
 
+Route::post('/register', [AuthController::class, 'register']);
