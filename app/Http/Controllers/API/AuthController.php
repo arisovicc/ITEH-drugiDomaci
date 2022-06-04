@@ -25,7 +25,7 @@ class AuthController extends Controller
             $user = User::create([ //kreiramo usera, on cuva automatski sa odredjenim imenom, mejlom i sifrom, cuva u bazi i promenljivoj
                 'name' => $request->name,
                 'email'=> $request->email,
-                'password' => $request -> passowrd,
+                'password' => $request -> password,
             ]);
 
         //moramo da pravimo tokene, tj kada se user registruje da ima token u sebi da se registrovao, da on kasnije moze da se uloguje preko tog tokena
