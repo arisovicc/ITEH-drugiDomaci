@@ -33,3 +33,17 @@ Route::get('/users/{id}', [UserTestController::class, 'show']);
 Route::get('/users', [UserTestController::class, 'index']);
 
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::group(['middleware' => ['auth:sanctum']], function () { //pravi se grupacija ruta gde se primenjuje jedno te isto pravilo za sve rute 
+    Route::get('/profile', function (Request $request) {
+        return auth()->user();
+    });
+
+    Route::resource('films', FilmTestController::class)->only(['update', 'store']);
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
+
+//Ruta za prikaz filmova kojoj moze da pristupi svako
+Route::resource('films', FilmTestController::class)->only(['index']);
